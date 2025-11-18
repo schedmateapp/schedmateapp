@@ -7,6 +7,10 @@
   --text-muted: #9aa3c7;
   --accent: #3c82ff;
   --accent-soft: rgba(60, 130, 255, 0.18);
+  --bg-hero-top: #1d2644;
+  --bg-panel-top: #182443;
+  --bg-sidebar-top: #161f3d;
+  --bg-list-item: rgba(8, 15, 40, 0.9);
   --danger: #ff4c6a;
   --success: #37c977;
   --radius-lg: 16px;
@@ -22,6 +26,10 @@
   --border-subtle: #d3d7f0;
   --text-main: #101322;
   --text-muted: #515777;
+  --bg-hero-top: #dbe4ff;
+  --bg-panel-top: #e9edff;
+  --bg-sidebar-top: #dbe4ff;
+  --bg-list-item: rgba(226, 230, 255, 0.9);
   --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.12);
 }
 
@@ -39,7 +47,7 @@ body {
   padding: 0;
   font-family: var(--font-main);
   color: var(--text-main);
-  background: radial-gradient(circle at top, #1d2644 0, var(--bg-main) 55%);
+  background: radial-gradient(circle at top, var(--bg-hero-top) 0, var(--bg-main) 55%);
   min-height: 100%;
 }
 
@@ -212,7 +220,7 @@ button {
 }
 
 .hero-panel {
-  background: radial-gradient(circle at top, #182443, var(--bg-elevated));
+  background: radial-gradient(circle at top, var(--bg-panel-top), var(--bg-elevated));
   border-radius: var(--radius-lg);
   padding: 22px 20px;
   box-shadow: var(--shadow-soft);
@@ -235,7 +243,7 @@ button {
   justify-content: space-between;
   padding: 8px 10px;
   border-radius: 10px;
-  background: rgba(8, 15, 40, 0.9);
+  background: var(--bg-list-item);
   margin-bottom: 6px;
 }
 
@@ -449,7 +457,7 @@ button {
 }
 
 .sidebar {
-  background: radial-gradient(circle at top, #161f3d, #060919);
+  background: radial-gradient(circle at top, var(--bg-sidebar-top), var(--bg-main));
   border-right: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -505,6 +513,14 @@ button {
 .main-panel {
   display: flex;
   flex-direction: column;
+}
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
 }
 
 .main-header {

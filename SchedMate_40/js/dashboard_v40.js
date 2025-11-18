@@ -11,7 +11,30 @@ const userEmailEl = document.getElementById("currentUserEmail");
 
 let currentUser = null;
 
-function setView(id) {
+const viewMap = {
+  todayView: {
+    title: "Today at a glance",
+    subtitle: "Here’s your schedule for today.",
+    hash: "today",
+  },
+  clientsView: {
+    title: "Clients",
+    subtitle: "All your customers in one place.",
+    hash: "clients",
+  },
+  settingsView: {
+    title: "Workspace settings",
+    subtitle: "Update your business details so invoices look professional.",
+    hash: "settings",
+  },
+};
+
+const hashToView = {};
+Object.entries(viewMap).forEach(([id, cfg]) => {
+  hashToView[cfg.hash] = id;
+});
+
+function setView(id, { updateHash = true } = {}) {
   views.forEach((v) => v.classList.remove("active"));
   viewButtons.forEach((btn) => btn.classList.remove("active"));
 
@@ -21,22 +44,30 @@ function setView(id) {
   const btn = document.querySelector(`.sidebar-link[data-view="${id}"]`);
   if (btn) btn.classList.add("active");
 
-  if (id === "todayView") {
-    viewTitle.textContent = "Today at a glance";
-    viewSubtitle.textContent = "Here’s your schedule for today.";
-  } else if (id === "clientsView") {
-    viewTitle.textContent = "Clients";
-    viewSubtitle.textContent = "All your customers in one place.";
-  } else if (id === "settingsView") {
-    viewTitle.textContent = "Workspace settings";
-    viewSubtitle.textContent =
-      "Update your business details so invoices look professional.";
+  const cfg = viewMap[id];
+  if (cfg) {
+    viewTitle.textContent = cfg.title;
+    viewSubtitle.textContent = cfg.subtitle;
+    if (updateHash && cfg.hash) {
+      const desiredHash = `#${cfg.hash}`;
+      if (window.location.hash !== desiredHash) {
+        window.location.hash = cfg.hash;
+      }
+    }
   }
 }
 
 viewButtons.forEach((btn) => {
   btn.addEventListener("click", () => setView(btn.dataset.view));
 });
+
+function setViewFromHash() {
+  const hash = window.location.hash.replace("#", "");
+  const viewId = hashToView[hash] || "todayView";
+  setView(viewId, { updateHash: false });
+}
+
+window.addEventListener("hashchange", setViewFromHash);
 
 // Ensure logged in
 async function loadSession() {
@@ -62,6 +93,7 @@ if (logoutBtn) {
   });
 }
 
+setViewFromHash();
 loadSession();
 
 // --------- CLIENTS ---------
