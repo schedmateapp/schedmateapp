@@ -1,0 +1,332 @@
+/* css/dashboard.css */
+
+.dashboard-shell {
+  display: flex;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, var(--bg-hero-top), var(--bg-main));
+  color: var(--text-main);
+  font-family: var(--font-main);
+}
+
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: var(--bg-sidebar-top);
+  color: var(--text-main);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 4px 0 20px rgba(15, 23, 42, 0.28);
+}
+
+/* Sidebar overrides for light theme for a softer look */
+html[data-theme="light"] .sidebar {
+  box-shadow: 4px 0 18px rgba(148, 163, 184, 0.4);
+}
+
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sidebar-brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #bfdbfe, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eff6ff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sidebar-brand-sub {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.sidebar-nav {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.sidebar-link {
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.sidebar-link.active {
+  background: rgba(37,99,235,0.18);
+  color: #e5edff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+/* Main */
+.main-area {
+  flex: 1;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.main-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.main-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.main-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.main-user-pill {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Content grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.2fr);
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.3rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.card-title {
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+
+.card-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Simple list styling */
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.84rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.4);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.badge {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.badge-neutral {
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+}
+
+
+
+/* ==== Clean modal system (v57) ==== */
+
+/* Dialog overlay using <dialog class="modal"> */
+dialog.modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+dialog.modal::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+dialog.modal[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card inside dialog: booking + client forms */
+.modal-card,
+.modal-inner {
+  width: 420px;
+  max-width: 95vw;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: 18px;
+  padding: 1.75rem 1.85rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+/* Modal layout */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.modal-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.modal-body.two-column-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 0.75rem 1rem;
+}
+
+.modal-body.two-column-form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Labels + helpers */
+.modal-card label,
+.modal-inner label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.modal-card .form-helper,
+.modal-inner .form-helper {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Fields */
+.modal-card input,
+.modal-card select,
+.modal-card textarea,
+.modal-inner input,
+.modal-inner select,
+.modal-inner textarea {
+  background: #ffffff;
+  color: #0F172A;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  padding: 0.5rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+html[data-theme="dark"] .modal-card input,
+html[data-theme="dark"] .modal-card select,
+html[data-theme="dark"] .modal-card textarea,
+html[data-theme="dark"] .modal-inner input,
+html[data-theme="dark"] .modal-inner select,
+html[data-theme="dark"] .modal-inner textarea {
+  background: #E5E9F0;
+  color: #020617;
+}
+
+/* Responsive tweak: full width on small screens */
+@media (max-width: 640px) {
+  .modal-card,
+  .modal-inner {
+    width: 100%;
+    max-width: 92vw;
+    padding: 1.4rem 1.2rem;
+    border-radius: 14px;
+  }
+
+  .modal-body.two-column-form {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+
+/* ==== End modal system ==== */
+

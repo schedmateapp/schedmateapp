@@ -1,0 +1,244 @@
+/* css/base.css */
+
+/* Reset-ish */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  color: #0f172a;
+  background: #f3f4f6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Light / dark theme */
+:root {
+  --bg-page: #f4f6fb;
+  --bg-card: #ffffff;
+  --bg-hero: linear-gradient(135deg, #e0f2fe, #eef2ff);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --primary: #2563eb;
+  --primary-soft: #dbeafe;
+  --primary-strong: #1d4ed8;
+  --border-subtle: #e2e8f0;
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
+
+.theme-dark {
+  --bg-page: #020617;
+  --bg-card: #020617;
+  --bg-hero: radial-gradient(circle at top, #0f172a, #020617);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --primary: #60a5fa;
+  --primary-soft: rgba(37, 99, 235, 0.12);
+  --primary-strong: #93c5fd;
+  --border-subtle: #1f2933;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+}
+
+/* Layout containers */
+.page-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Top nav */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: radial-gradient(circle at 30% 20%, #bfdbfe, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eff6ff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.brand-name {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.nav-links a.nav-cta {
+  padding: 0.45rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.nav-links a.nav-login {
+  font-weight: 500;
+}
+
+/* Theme toggle pill */
+.theme-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  font-size: 0.8rem;
+}
+
+.theme-pill-label {
+  color: var(--text-muted);
+}
+
+.theme-switch {
+  position: relative;
+  width: 36px;
+  height: 18px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--border-subtle);
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.theme-switch-slider::before {
+  content: "";
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  top: 2px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.35);
+  transition: 0.2s;
+}
+
+.theme-switch input:checked + .theme-switch-slider {
+  background: var(--primary);
+}
+
+.theme-switch input:checked + .theme-switch-slider::before {
+  transform: translateX(18px);
+}
+
+/* Primary button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-weight: 500;
+  font-size: 0.96rem;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.32);
+}
+
+/* Secondary ghost button */
+.btn-ghost {
+  padding: 0.75rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-main);
+  font-size: 0.94rem;
+  cursor: pointer;
+}
+
+/* Badge */
+.badge-soft {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.1rem 0.55rem;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Simple footer */
+.footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — SchedMate</title>
+  <meta
+    name="description"
+    content="Access your SchedMate workspace and keep your jobs organized."
+  />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="./css/app.css?v=40" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+</head>
+<body class="auth-shell">
+  <header class="top-nav simple-nav">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">SM</div>
+      <span class="brand-name">SchedMate</span>
+    </a>
+    <button id="themeToggle" class="ghost-btn">🌙</button>
+  </header>
+
+  <main class="auth-main">
+    <section class="auth-card">
+      <p class="pill">Welcome back</p>
+      <h1>Log in to your workspace</h1>
+      <p class="auth-subtitle">
+        See your schedule, clients, and jobs in one calm dashboard.
+      </p>
+
+      <form id="loginForm" class="form">
+        <label>
+          Email
+          <input type="email" id="loginEmail" autocomplete="email" required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="loginPassword" autocomplete="current-password" required />
+        </label>
+
+        <button type="submit" class="primary-btn full-width" id="loginBtn">
+          Log in
+        </button>
+
+        <p class="form-helper">
+          <a href="forgot-password.html">Forgot your password?</a>
+        </p>
+      </form>
+
+      <p class="form-footer">
+        New here? <a href="signup.html">Create an account</a>
+      </p>
+
+      <p id="loginError" class="form-error" hidden></p>
+    </section>
+  </main>
+
+  <script src="./js/theme.js"></script>
+  <script type="module" src="./js/auth_v40.js"></script>
+</body>
+</html>

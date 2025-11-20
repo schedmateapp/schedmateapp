@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create account — SchedMate</title>
+  <meta
+    name="description"
+    content="Create your SchedMate workspace and stay fully booked without chaos."
+  />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="./css/app.css?v=40" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+</head>
+<body class="auth-shell">
+  <header class="top-nav simple-nav">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">SM</div>
+      <span class="brand-name">SchedMate</span>
+    </a>
+    <button id="themeToggle" class="ghost-btn">🌙</button>
+  </header>
+
+  <main class="auth-main">
+    <section class="auth-card">
+      <p class="pill">7-day free trial</p>
+      <h1>Create your SchedMate workspace</h1>
+      <p class="auth-subtitle">
+        We’ll start with a solo plan. You can add teammates later.
+      </p>
+
+      <form id="signupForm" class="form">
+        <label>
+          Business name
+          <input type="text" id="signupBusiness" autocomplete="organization" required />
+        </label>
+        <label>
+          Email
+          <input type="email" id="signupEmail" autocomplete="email" required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="signupPassword" autocomplete="new-password" required minlength="6" />
+        </label>
+
+        <button type="submit" class="primary-btn full-width" id="signupBtn">
+          Create my account
+        </button>
+      </form>
+
+      <p class="form-footer">
+        Already have an account? <a href="login.html">Log in</a>
+      </p>
+
+      <p id="signupError" class="form-error" hidden></p>
+    </section>
+  </main>
+
+  <script src="./js/theme.js"></script>
+  <script type="module" src="./js/auth_v40.js"></script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — SchedMate</title>
+  <meta
+    name="description"
+    content="SchedMate dashboard for managing clients, bookings, and settings."
+  />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="stylesheet" href="./css/app.css?v=40" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+</head>
+<body class="dashboard-shell">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-logo">SM</div>
+      <div class="sidebar-title">
+        <span>SchedMate</span>
+        <small>Today’s jobs</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="sidebar-link active" data-view="todayView">Today</button>
+      <button class="sidebar-link" data-view="clientsView">Clients</button>
+      <button class="sidebar-link" data-view="settingsView">Settings</button>
+    </nav>
+
+    <footer class="sidebar-footer">
+      <p class="small-text">
+        Built for cleaners, techs, and home services.
+      </p>
+    </footer>
+  </aside>
+
+  <div class="main-panel">
+    <header class="main-header">
+      <div class="main-header-left">
+        <h1 id="viewTitle">Today at a glance</h1>
+        <p id="viewSubtitle">Here’s your schedule for today.</p>
+      </div>
+
+      <div class="main-header-right">
+        <button id="themeToggle" class="ghost-btn">🌙</button>
+        <span id="currentUserEmail" class="user-email"></span>
+        <button id="logoutBtn" class="ghost-btn">Log out</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Onboarding / tutorial -->
+      <section id="tutorialBanner" class="tutorial-banner" hidden>
+        <div>
+          <h2>Welcome to SchedMate 🎉</h2>
+          <p>
+            Start by adding your first client, then schedule a job for today.
+          </p>
+          <ul class="tutorial-steps">
+            <li>1. Go to <strong>Clients</strong> and click “New client”.</li>
+            <li>2. Add a quick note like “prefers afternoon schedule”.</li>
+            <li>3. Come back to <strong>Today</strong> to see jobs at a glance.</li>
+          </ul>
+        </div>
+        <button id="dismissTutorial" class="ghost-btn">Got it</button>
+      </section>
+
+      <!-- Today view -->
+      <section id="todayView" class="view active">
+        <div class="two-column">
+          <article class="card">
+            <header class="card-header">
+              <h2>Today’s bookings</h2>
+              <button id="addBookingBtn" class="primary-btn small">
+                + Add booking
+              </button>
+            </header>
+            <div id="bookingsEmpty" class="empty-state">
+              No bookings scheduled yet.
+            </div>
+            <ul id="bookingsList" class="list"></ul>
+          </article>
+
+          <article class="card">
+            <header class="card-header">
+              <h2>Clients</h2>
+              <button id="addClientFromToday" class="ghost-btn small">
+                + New client
+              </button>
+            </header>
+            <div id="todayClientsEmpty" class="empty-state">
+              Add your first client to get started.
+            </div>
+            <ul id="todayClientsList" class="list"></ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Clients view -->
+      <section id="clientsView" class="view">
+        <article class="card">
+          <header class="card-header">
+            <div>
+              <h2>Clients</h2>
+              <p class="card-subtitle">All your customers in one place.</p>
+            </div>
+            <button id="newClientBtn" class="primary-btn small">
+              + New client
+            </button>
+          </header>
+
+          <table class="table" aria-label="Clients table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Notes</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="clientsTableBody"></tbody>
+          </table>
+
+          <div id="clientsEmpty" class="empty-state">
+            No clients yet. Click “New client” to add one.
+          </div>
+        </article>
+      </section>
+
+      <!-- Settings view -->
+      <section id="settingsView" class="view">
+        <article class="card">
+          <header class="card-header">
+            <div>
+              <h2>Workspace settings</h2>
+              <p class="card-subtitle">
+                Update your business details so invoices and messages look professional.
+              </p>
+            </div>
+          </header>
+
+          <form id="settingsForm" class="form two-column-form">
+            <label>
+              Business name
+              <input type="text" id="settingsBusinessName" />
+            </label>
+            <label>
+              Contact email
+              <input type="email" id="settingsContactEmail" />
+            </label>
+            <label>
+              Default start time
+              <input type="time" id="settingsStartTime" value="08:00" />
+            </label>
+            <label>
+              Default end time
+              <input type="time" id="settingsEndTime" value="18:00" />
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-btn" id="settingsSaveBtn">
+                Save settings
+              </button>
+              <span id="settingsStatus" class="form-success" hidden>Saved.</span>
+            </div>
+          </form>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  
+  <!-- Booking modal -->
+  <dialog id="bookingModal" class="modal">
+    <form method="dialog" class="modal-inner" id="bookingForm">
+      <header class="modal-header">
+        <h2 id="bookingModalTitle">Add booking</h2>
+      </header>
+
+      <section class="modal-body two-column-form">
+        <label>
+          Client (existing)
+          <select id="bookingClientSelect">
+            <option value="">Select client from list</option>
+          </select>
+          <span class="form-helper">Optional: pick from saved clients, or type a name below.</span>
+        </label>
+
+        <label>
+          Client name (override)
+          <input type="text" id="bookingClientName" placeholder="e.g. John Smith" />
+        </label>
+
+        <label>
+          Service
+          <select id="bookingService">
+            <option value="Standard clean">Standard clean</option>
+            <option value="Deep clean">Deep clean</option>
+            <option value="Move-out clean">Move-out clean</option>
+            <option value="Aircon maintenance">Aircon maintenance</option>
+            <option value="Plumbing visit">Plumbing visit</option>
+            <option value="Electrical check">Electrical check</option>
+            <option value="Pest control">Pest control</option>
+            <option value="Home repair">Home repair</option>
+            <option value="Beauty / wellness service">Beauty / wellness service</option>
+            <option value="Other">Other (custom)</option>
+          </select>
+        </label>
+
+        <label>
+          Custom service (optional)
+          <input type="text" id="bookingCustomService" placeholder="If 'Other', type the service here" />
+        </label>
+
+        <label>
+          Date
+          <input type="date" id="bookingDate" required />
+        </label>
+
+        <label>
+          Time
+          <input type="time" id="bookingTime" required />
+        </label>
+
+        <label>
+          Notes
+          <textarea id="bookingNotes" rows="3" placeholder="Gate code, parking, pet, or special instructions"></textarea>
+        </label>
+
+        <input type="hidden" id="bookingId" />
+      </section>
+
+      <footer class="modal-footer">
+        <button type="button" class="ghost-btn" id="bookingCancelBtn">Cancel</button>
+        <button type="submit" class="primary-btn" id="bookingSaveBtn">Save booking</button>
+      </footer>
+    </form>
+  </dialog>
+
+<!-- Client modal -->
+  <dialog id="clientModal" class="modal">
+    <form method="dialog" class="modal-inner" id="clientForm">
+      <header class="modal-header">
+        <h2 id="clientModalTitle">New client</h2>
+      </header>
+
+      <section class="modal-body">
+        <label>
+          Name
+          <input type="text" id="clientName" required />
+        </label>
+        <label>
+          Email
+          <input type="email" id="clientEmail" />
+        </label>
+        <label>
+          Phone
+          <input type="tel" id="clientPhone" />
+        </label>
+        <label>
+          Notes
+          <textarea id="clientNotes" rows="3"></textarea>
+        </label>
+        <input type="hidden" id="clientId" />
+      </section>
+
+      <footer class="modal-footer">
+        <button type="button" class="ghost-btn" id="clientCancelBtn">Cancel</button>
+        <button type="submit" class="primary-btn" id="clientSaveBtn">Save</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="./js/theme.js"></script>
+  <script type="module" src="./js/dashboard.js"></script>
+  <script type="module" src="./js/tutorial.js"></script>
+</body>
+</html>

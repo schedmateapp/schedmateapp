@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="SchedMate keeps your clients, jobs, and schedule in one organized dashboard."
+  />
+  <meta name="color-scheme" content="dark light" />
+  <title>SchedMate — Stay fully booked, without losing your sanity</title>
+  <link rel="stylesheet" href="./css/app.css?v=40" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+</head>
+<body class="app-shell">
+  <header class="top-nav">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">SM</div>
+      <span class="brand-name">SchedMate</span>
+    </a>
+
+    <nav class="top-nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#how-it-works">How it works</a>
+    </nav>
+
+    <div class="top-nav-actions">
+      <button id="themeToggle" class="ghost-btn" aria-label="Toggle light/dark">
+        🌙
+      </button>
+      <a href="login.html" class="ghost-btn">Log in</a>
+      <a href="signup.html" class="primary-btn">Start 7-day free trial</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="pill">For cleaners, techs & home services</p>
+        <h1>Stay fully booked — without losing your sanity.</h1>
+        <p class="hero-subtitle">
+          SchedMate keeps your clients, jobs, and schedule in one clean dashboard.
+          No more missed messages, double bookings, or messy notebooks.
+        </p>
+
+        <div class="hero-actions">
+          <a href="signup.html" class="primary-btn hero-main-cta">
+            Start 7-day free trial
+          </a>
+          <a href="#how-it-works" class="ghost-btn">See how it works</a>
+        </div>
+
+        <p class="small-text">No credit card needed · Cancel anytime</p>
+      </div>
+
+      <aside class="hero-panel" aria-label="Sample daily schedule">
+        <h2>Today’s schedule</h2>
+        <ul class="schedule-list">
+          <li>
+            <span class="time">9:00 am</span>
+            <span class="job">Deep clean — 2BR condo</span>
+          </li>
+          <li>
+            <span class="time">11:30 am</span>
+            <span class="job">Aircon maintenance</span>
+          </li>
+          <li>
+            <span class="time">3:00 pm</span>
+            <span class="job">Move-out inspection</span>
+          </li>
+        </ul>
+        <p class="small-text">
+          Imagine this panel pulling from your real live bookings.
+        </p>
+      </aside>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+      <h2>Designed for small service teams</h2>
+      <div class="grid-3">
+        <article class="feature-card">
+          <h3>Smart daily schedule</h3>
+          <p>
+            See today’s jobs at a glance — who, when, where, and what needs to be done.
+          </p>
+        </article>
+        <article class="feature-card">
+          <h3>Client history in one place</h3>
+          <p>
+            Notes, previous visits, preferences, and issues — no more digging
+            through old chats and screenshots.
+          </p>
+        </article>
+        <article class="feature-card">
+          <h3>Miss fewer bookings</h3>
+          <p>
+            Keep track of leads and follow-ups so no potential job quietly disappears.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="section section-alt">
+      <h2>Simple workflow, from booking to payment</h2>
+      <ol class="steps-list">
+        <li><strong>1. Capture leads</strong> via WhatsApp, Messenger, or phone, then add them into SchedMate.</li>
+        <li><strong>2. Schedule jobs</strong> on your calendar and assign them to your team.</li>
+        <li><strong>3. Track work</strong> and notes so you don’t forget requests like “bring pet-safe cleaner.”</li>
+        <li><strong>4. Invoice & get paid</strong> with your preferred method (PayPal — coming soon).</li>
+      </ol>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <h2>Simple, honest pricing</h2>
+      <p class="section-subtitle">
+        Start free for 7 days. Upgrade only when SchedMate is actually helping your day.
+      </p>
+
+      <div class="pricing-grid">
+        <article class="pricing-card">
+          <p class="pill pill-soft">Beta plan</p>
+          <h3>SchedMate Beta</h3>
+          <p class="pricing-price">$11.99<span>/month</span></p>
+          
+
+<ul class="pricing-features">
+  <li>✓ Smart calendar & bookings</li>
+  <li>✓ Unlimited clients</li>
+  <li>✓ Job history & notes</li>
+  <li>✓ Manual reminders (SMS/DM templates)</li>
+  <li>✓ Daily & weekly dashboard insights</li>
+  <li>✓ 7‑day free trial</li>
+</ul>
+
+
+          
+<div class="pricing-actions">
+  
+<div class="pricing-actions">
+  <a href="signup.html" class="primary-btn full-width">Start 7-day free trial</a>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=AQqxQWGqapbNjplFHRPEeOXTdk_TUGDhaGhlNfH_JZq7wQdRadX_-tgfNmjzYNqw_xxYaNi2_uLmWA9J&vault=true&intent=subscription&currency=USD"></script>
+
+  <div id="paypal-beta-subscription" style="margin-top:12px;"></div>
+
+  <script>
+    paypal.Buttons({
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          plan_id: "P-TEST123456789"
+        });
+      },
+      onApprove: function(data, actions) {
+        alert("Subscription active! ID: " + data.subscriptionID);
+        window.location.href = "signup.html";
+      }
+    }).render("#paypal-beta-subscription");
+  </script>
+</div>
+
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AQqxQWGqapbNjplFHRPEeOXTdk_TUGDhaGhlNfH_JZq7wQdRadX_-tgfNmjzYNqw_xxYaNi2_uLmWA9J&vault=true&intent=subscription&currency=USD"></script>
+
+  <div id="paypal-beta-subscription" style="margin-top:12px;"></div>
+
+  <script>
+    paypal.Buttons({
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          plan_id: "P-TEST123456789"  // replace with your real PayPal Plan ID later
+        });
+      },
+      onApprove: function(data, actions) {
+        alert("Subscription active! ID: " + data.subscriptionID);
+        window.location.href = "signup.html";
+      }
+    }).render("#paypal-beta-subscription");
+  </script>
+</div>
+
+          <p class="small-text">
+            Payments: we’ll connect PayPal in the next milestone.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <span class="brand-name">SchedMate</span>
+      <span class="dot">•</span>
+      <span class="small-text">Built for cleaners, techs, and home services.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#features">About</a>
+      <a href="mailto:schedmateapp@gmail.com">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+  </footer>
+
+  <script src="./js/theme.js"></script>
+</body>
+</html>
